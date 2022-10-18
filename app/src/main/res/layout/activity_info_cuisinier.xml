@@ -56,13 +56,14 @@
             android:text="Choose File"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+
             />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/address"
+        android:id="@+id/AddressLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -72,7 +73,7 @@
         android:layout_marginStart="5dp">
 
         <TextView
-            android:id="@+id/AdressText"
+            android:id="@+id/AddressText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -81,13 +82,79 @@
 
         <EditText
             android:padding="10dp"
-            android:id="@+id/EmailField"
+            android:id="@+id/AddressField"
             android:layout_width="0dp"
             android:layout_weight="8"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
             />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/PostalCodeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/AddressLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+        <TextView
+            android:id="@+id/postalCodeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Postal Code :"
+            android:textSize="20dp" />
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/PostalCodeField"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/TellTheClientAbtYourselfLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/PostalCodeLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+        <TextView
+            android:id="@+id/TellTheClientAbtYourselfText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Tell the client about yourself :"
+            android:textSize="20dp" />
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/TellTheClientAbtYourselfField"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corners"
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/ContinueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        app:layout_constraintTop_toBottomOf="@+id/TellTheClientAbtYourselfLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/grey"
+        />
+
 
 
 
