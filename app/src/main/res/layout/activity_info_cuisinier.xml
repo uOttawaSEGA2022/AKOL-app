@@ -43,7 +43,7 @@
             android:id="@+id/VoidedChequeText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:text="Photo of a voided check:"
             android:textSize="20dp" />
 
@@ -52,7 +52,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="40dp"
             android:backgroundTint="@color/grey"
             android:text="Choose File"
             app:layout_constraintEnd_toEndOf="parent"
