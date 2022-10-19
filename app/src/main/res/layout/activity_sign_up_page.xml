@@ -35,8 +35,8 @@
 
     <Button
         android:id="@+id/SignUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@drawable/rounded_corners"
         android:text="Sign Up"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:padding="10dp" />
 
 
@@ -163,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:padding="10dp" />
 
 
@@ -171,8 +171,8 @@
 
     <LinearLayout
         android:id="@+id/ConfirmLayout"
-        android:layout_width="410dp"
-        android:layout_height="47dp"
+        android:layout_width="407dp"
+        android:layout_height="79dp"
         android:layout_marginTop="30dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -193,9 +193,11 @@
             android:id="@+id/PasswordConfirmed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
-            android:inputType="textPersonName"
+            android:gravity="center"
+            android:inputType="textPassword"
             android:padding="10dp" />
 
 
