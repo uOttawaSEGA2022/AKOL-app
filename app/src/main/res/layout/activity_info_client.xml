@@ -107,16 +107,16 @@
             android:background="@drawable/rounded_corners"/>
 
         <TextView
-            android:id="@+id/ZipCodeText"
+            android:id="@+id/PostalCodeText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="Zip Code"
+            android:text="Postal Code"
             android:textSize="20dp" />
 
         <EditText
             android:padding="10dp"
-            android:id="@+id/ZipCodeField"
+            android:id="@+id/PostalCodeField"
             android:layout_width="0dp"
             android:layout_weight="5"
             android:inputType="text"
