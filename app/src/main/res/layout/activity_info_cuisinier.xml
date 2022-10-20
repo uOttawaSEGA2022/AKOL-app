@@ -141,6 +141,7 @@
             android:layout_weight="5"
             android:layout_height="60dp"
             android:background="@drawable/rounded_corners"
+            android:textSize="10dp"
             />
     </LinearLayout>
     <Button
