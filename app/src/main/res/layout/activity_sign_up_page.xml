@@ -35,15 +35,14 @@
 
     <Button
         android:id="@+id/SignUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@drawable/rounded_corners"
+        android:layout_width="113dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="19dp"
+        android:onClick="OnClickListener"
         android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConfirmLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/Sign" />
 
     <LinearLayout
         android:id="@+id/FirstNameLayout"
@@ -51,8 +50,9 @@
         android:layout_height="47dp"
         android:layout_marginTop="25dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <TextView
             android:id="@+id/textView5"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:padding="10dp" />
 
 
@@ -163,42 +163,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:padding="10dp" />
 
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ConfirmLayout"
-        android:layout_width="410dp"
-        android:layout_height="47dp"
+    <TextView
+        android:id="@+id/Sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:orientation="horizontal"
+        android:text="Have an account? Sign in"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordLayout">
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="161dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:padding="10dp"
-            android:text="Confirm your password :"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/PasswordConfirmed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:background="@drawable/rounded_corners"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
-
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/PasswordLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
