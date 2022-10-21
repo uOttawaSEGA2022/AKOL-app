@@ -1,7 +1,6 @@
 package com.example.akolapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,10 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpPage extends AppCompatActivity {
@@ -26,7 +32,6 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-
         mFirebaseAuth=FirebaseAuth.getInstance();
         email=findViewById(R.id.Email);
         password=findViewById(R.id.Password);
@@ -70,8 +75,14 @@ public class SignUpPage extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(SignUpPage.this,"User Created",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),InfoCuisinier.class));
+                        if(UserType.usertype.equals("ChefUser")){
+                            Toast.makeText(SignUpPage.this,"User Created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),InfoCuisinier.class));
+                        }
+                        else if(UserType.usertype.equals("ClientUser")){
+                            Toast.makeText(SignUpPage.this,"User Created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),InfoClient.class));
+                        }
                     }
                     else{
                         Toast.makeText(SignUpPage.this,"Error!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
