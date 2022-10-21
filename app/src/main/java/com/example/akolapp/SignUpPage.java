@@ -17,6 +17,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpPage extends AppCompatActivity {
+    static String firstnamee;
+    static String lastnamee;
+    static String emaile;
+    static String pwde;
     EditText firstName, lastName, email, password;
     TextView sign;
     Button SignUpButton;
@@ -26,7 +30,6 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-
         mFirebaseAuth=FirebaseAuth.getInstance();
         email=findViewById(R.id.Email);
         password=findViewById(R.id.Password);
@@ -45,33 +48,100 @@ public class SignUpPage extends AppCompatActivity {
                 String pwd = password.getText().toString().trim();
                 String mFirst= firstName.getText().toString().trim();
                 String mLast= lastName.getText().toString().trim();
+                if(TextUtils.isEmpty(mEmail) || TextUtils.isEmpty(pwd) || TextUtils.isEmpty(mFirst) || TextUtils.isEmpty(mLast) || pwd.length()<=6 ) {
+                    if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(pwd) && TextUtils.isEmpty(mFirst) && TextUtils.isEmpty(mLast)) {
+                        email.setError("Email is required");
+                        password.setError("Password is required");
+                        firstName.setError("FirstName is required");
+                        lastName.setError("LastName is required");
+                   }
+                    else if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(pwd) && TextUtils.isEmpty(mFirst) ) {
+                        email.setError("Email is required");
+                        password.setError("Password is required");
+                        firstName.setError("FirstName is required");
+                    }
+                    else if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(pwd) && TextUtils.isEmpty(mFirst) && TextUtils.isEmpty(mLast)) {
+                        email.setError("Email is required");
+                        password.setError("Password is required");
+                        lastName.setError("LastName is required");
+                    }
+                    else if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(mFirst) && TextUtils.isEmpty(mLast)) {
+                        email.setError("Email is required");
+                        firstName.setError("FirstName is required");
+                        lastName.setError("LastName is required");
+                    }
+                    else if(TextUtils.isEmpty(pwd) && TextUtils.isEmpty(mFirst) && TextUtils.isEmpty(mLast)) {
+                        password.setError("Password is required");
+                        firstName.setError("FirstName is required");
+                        lastName.setError("LastName is required");
+                    }
+                    else if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(pwd)) {
+                        email.setError("Email is required");
+                        password.setError("Password is required");
 
-            if(TextUtils.isEmpty(mEmail)){
+                    }
+                    else if( TextUtils.isEmpty(mFirst) && TextUtils.isEmpty(mLast)) {
+                        firstName.setError("FirstName is required");
+                        lastName.setError("LastName is required");
+                    }
+                    else if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(mLast)) {
+                        email.setError("Email is required");
+                        lastName.setError("LastName is required");
+                    }
+                    else if(TextUtils.isEmpty(pwd) && TextUtils.isEmpty(mLast)) {
+                        password.setError("Password is required");
+                        lastName.setError("LastName is required");
+                    }
+                    else if(TextUtils.isEmpty(mEmail) && TextUtils.isEmpty(mFirst) ) {
+                        email.setError("Email is required");
+                        firstName.setError("FirstName is required");
+                    }
+                    else if(TextUtils.isEmpty(pwd) && TextUtils.isEmpty(mFirst)) {
+                        password.setError("Password is required");
+                        firstName.setError("FirstName is required");
+                    }
+
+                    else if(TextUtils.isEmpty(mEmail)){
                 email.setError("Email is required");
                 return;
             }
-            if(TextUtils.isEmpty(pwd)){
+              else if(TextUtils.isEmpty(pwd)){
                 password.setError("Password is required");
                 return;
             }
-                if(TextUtils.isEmpty(mFirst)){
+               else if(TextUtils.isEmpty(mFirst)){
                     firstName.setError("FirstName is required");
                     return;
                 }
-                if(TextUtils.isEmpty(mLast)){
+               else if(TextUtils.isEmpty(mLast)){
                     lastName.setError("LastName is required");
                     return;
                 }
-            if(pwd.length()<6){
+           else if(pwd.length()<=6){
                 password.setError("Password must be 6 or more characters");
                 return;
             }
+                return;}
             mFirebaseAuth.createUserWithEmailAndPassword(mEmail,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(SignUpPage.this,"User Created",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),InfoCuisinier.class));
+                        if(UserType.usertype.equals("ChefUser")){
+                            firstnamee= mFirst;
+                            lastnamee= mLast;
+                            emaile= mEmail;
+                            pwde= pwd;
+                            Toast.makeText(SignUpPage.this,"User Created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), InfoCuisinier.class));
+                        }
+                        else if(UserType.usertype.equals("ClientUser")){
+                            firstnamee= mFirst;
+                            lastnamee= mLast;
+                            emaile= mEmail;
+                            pwde= pwd;
+                            Toast.makeText(SignUpPage.this,"User Created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), InfoClient.class));
+                        }
                     }
                     else{
                         Toast.makeText(SignUpPage.this,"Error!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
@@ -84,7 +154,7 @@ public class SignUpPage extends AppCompatActivity {
         sign.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent(SignUpPage.this,LoginPage.class);
+            Intent i = new Intent(SignUpPage.this, LoginPage.class);
             startActivity(i);
 
         }
