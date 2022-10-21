@@ -42,7 +42,7 @@
             android:id="@+id/CardNumberField"
             android:layout_width="0dp"
             android:layout_weight="8"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
 
@@ -71,7 +71,7 @@
         <EditText
             android:padding="10dp"
             android:id="@+id/ExpiryDateField"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_width="0dp"
             android:layout_weight="8"
             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
             android:id="@+id/CVVField"
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"/>
 

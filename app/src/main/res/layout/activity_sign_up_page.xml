@@ -94,7 +94,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/LastName"
+            android:id="@+id/Email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -126,7 +126,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/Email"
+            android:id="@+id/LastName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
