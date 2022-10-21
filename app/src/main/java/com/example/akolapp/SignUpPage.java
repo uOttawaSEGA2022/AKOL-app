@@ -36,10 +36,7 @@ public class SignUpPage extends AppCompatActivity {
         sign=findViewById(R.id.Sign);
 
 
-        if(mFirebaseAuth.getCurrentUser()!=null){
-            startActivity(new Intent(getApplicationContext(),LoginPage.class));
-            finish();
-        }
+        
 
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
