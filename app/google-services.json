@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "686128497459",
-    "project_id": "akol-6f020",
-    "storage_bucket": "akol-6f020.appspot.com"
+    "project_number": "575064337124",
+    "project_id": "akolproject",
+    "storage_bucket": "akolproject.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:686128497459:android:1e1f4dbf4bb9ac1a13f446",
+        "mobilesdk_app_id": "1:575064337124:android:0a9b6d4931e88dae745af1",
         "android_client_info": {
           "package_name": "com.example.akolapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "686128497459-s7ktqi331qjk8c978sm9hfd586jh4ujo.apps.googleusercontent.com",
+          "client_id": "575064337124-51hkqe7qtdbd263ge3670kf2efk1edj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.akolapp",
+            "certificate_hash": "777d348c5cf5d6ed3d7d3811f4dc45924ef656e9"
+          }
+        },
+        {
+          "client_id": "575064337124-b1t5n2ffs3suvd8fqgl05ue145an0rrs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBaezNzaLKKcFFtbcXhsigjbghUnmGyIHE"
+          "current_key": "AIzaSyAybUmOxFSNupPOpszahTlx4s_h7IZUT5Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "686128497459-s7ktqi331qjk8c978sm9hfd586jh4ujo.apps.googleusercontent.com",
+              "client_id": "575064337124-b1t5n2ffs3suvd8fqgl05ue145an0rrs.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
