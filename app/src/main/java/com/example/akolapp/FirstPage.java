@@ -54,10 +54,10 @@ public class FirstPage extends AppCompatActivity {
                 }
             }
         });
-        //if(currID == "h2OL7WZbSeb63xjcjNhoR8bY7Ps1"){
-            welcomeTxt.setText("Welcome, you are connected as an admin");
-        //}
-        /*else {
+        if(currID .equals("h2OL7WZbSeb63xjcjNhoR8bY7Ps1")){
+            welcomeTxt.setText("Welcome you are connected as an admin");
+        }
+        else {
             DocumentReference docIdRef2 = storage.collection("ClientUser").document(currID);
             docIdRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -78,7 +78,7 @@ public class FirstPage extends AppCompatActivity {
                 }
             });
 
-        }*/
+        }
 
 
 
