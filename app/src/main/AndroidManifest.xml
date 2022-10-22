@@ -36,6 +36,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".UserType"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".InfoClient"
             android:exported="false">
             <meta-data
