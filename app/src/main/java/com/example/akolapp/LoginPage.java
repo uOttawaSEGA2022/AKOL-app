@@ -33,7 +33,6 @@ public class LoginPage extends AppCompatActivity {
 
 
     public void Register(){
-        Intent intent = new Intent(LoginPage.this,SignUpPage.class);
-        startActivity(intent);
+
     }
 }

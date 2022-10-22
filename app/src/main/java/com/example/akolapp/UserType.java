@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class UserType extends AppCompatActivity {
     static String usertype;
-    Button chefuser, clientuser;
+    private Button chefuser, clientuser;
 
 
     @Override
