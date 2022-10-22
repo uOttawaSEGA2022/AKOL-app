@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginPage extends AppCompatActivity implements View.OnClickListener {
+public class LoginPage extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private EditText emailText;
     private EditText passwordText;
@@ -51,9 +51,19 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
         emailText = (EditText) findViewById(R.id.EmailField);
         passwordText = (EditText) findViewById(R.id.PasswordField);
         logIn = (Button)findViewById(R.id.LoginButton);
-        signUp = (Button) findViewById(R.id.signUpButton);
-        logIn.setOnClickListener(this);
-        signUp.setOnClickListener(this);
+        signUp = (Button) findViewById(R.id.signUpButtonMain);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Register();
+            }
+        });
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkLogIn();
+            }
+        });
 
     }
 
@@ -68,20 +78,6 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View view) {
-        int element = view.getId();
-        switch (element){
-            case R.id.signUpButton:
-                Register();
-                break;
-            case R.id.LoginButton:
-                checkLogIn();
-                break;
-
-        }
-
-    }
     private void checkLogIn(){
         String email = emailText.getText().toString().trim();
         String password = passwordText.getText().toString().trim();
