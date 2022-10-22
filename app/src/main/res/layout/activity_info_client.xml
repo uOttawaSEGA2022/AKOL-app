@@ -44,6 +44,7 @@
             android:layout_weight="8"
             android:inputType="number"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:background="@drawable/rounded_corners"
             android:maxLength="16"
              />
@@ -72,6 +73,7 @@
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
             android:inputType="number"
+            android:textColor="@color/white"
             android:maxLength="4"
             android:padding="10dp" />
 
@@ -101,6 +103,7 @@
             android:layout_weight="5"
             android:background="@drawable/rounded_corners"
             android:inputType="number"
+            android:textColor="@color/white"
             android:padding="10dp"
             android:maxLength="3"/>
 
@@ -120,6 +123,7 @@
             android:layout_weight="5"
             android:background="@drawable/rounded_corners"
             android:inputType="text"
+            android:textColor="@color/white"
             android:padding="10dp"
             android:maxLength="8"
 
