@@ -99,25 +99,16 @@
         android:backgroundTint="@color/grey"
         />
 
-    <TextView
-        android:id="@+id/ForgotPasswordText"
-        android:layout_width="149dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="40dp"
-        android:text="Forgot your password?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
     <Button
         android:id="@+id/signUpButtonMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Sign up"
-        app:layout_constraintStart_toStartOf="@id/LoginButton"
+        android:backgroundTint="@color/grey"
+        android:text="Sign up"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/LoginButton"
-        app:layout_constraintTop_toBottomOf="@+id/ForgotPasswordText"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/grey"/>
+        app:layout_constraintStart_toStartOf="@id/LoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
