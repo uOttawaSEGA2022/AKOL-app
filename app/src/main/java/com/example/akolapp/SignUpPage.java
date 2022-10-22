@@ -16,15 +16,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+
 public class SignUpPage extends AppCompatActivity {
     static String firstnamee;
     static String lastnamee;
     static String emaile;
     static String pwde;
-    EditText firstName, lastName, email, password;
-    TextView sign;
-    Button SignUpButton;
-    FirebaseAuth mFirebaseAuth;
+    private EditText firstName, lastName, email, password;
+    private TextView sign;
+    private Button SignUpButton;
+    private FirebaseAuth mFirebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class SignUpPage extends AppCompatActivity {
         lastName=findViewById(R.id.LastName);
         SignUpButton=findViewById(R.id.SignUpButton);
         sign=findViewById(R.id.Sign);
+
 
 
         
