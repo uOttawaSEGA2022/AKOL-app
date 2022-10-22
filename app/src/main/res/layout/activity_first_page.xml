@@ -36,6 +36,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:backgroundTint="@color/grey"
+        android:textColor="@color/white"
         android:text="Sign out"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

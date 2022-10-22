@@ -137,8 +137,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
-        android:background="@drawable/rounded_corners"
-        android:onClick="OnClickListener" />
+        android:onClick="OnClickListener"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/white"/>
         />
 
 
