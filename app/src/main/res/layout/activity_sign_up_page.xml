@@ -72,6 +72,7 @@
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
             android:inputType="textPersonName"
+            android:textColor="@color/white"
             android:padding="10dp" />
     </LinearLayout>
 
@@ -102,6 +103,7 @@
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
             android:inputType="textEmailAddress"
+            android:textColor="@color/white"
             android:padding="10dp" />
 
 
@@ -134,6 +136,7 @@
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
             android:inputType="textPersonName"
+            android:textColor="@color/white"
             android:padding="10dp" />
 
 
@@ -166,6 +169,7 @@
             android:layout_weight="8"
             android:background="@drawable/rounded_corners"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             android:padding="10dp" />
 
 
