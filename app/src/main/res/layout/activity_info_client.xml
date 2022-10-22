@@ -45,48 +45,45 @@
             android:inputType="number"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
-
-
+            android:maxLength="16"
              />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ExpiryDateLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="73dp"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@+id/CardNumberLayout"
-        tools:layout_editor_absoluteX="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp">
+        tools:layout_editor_absoluteX="7dp">
 
         <TextView
             android:id="@+id/ExpiryDateText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="Expiry Date"
+            android:text="Expiry Date (MMYY)"
             android:textSize="20dp" />
 
         <EditText
-            android:padding="10dp"
             android:id="@+id/ExpiryDateField"
-            android:inputType="number"
             android:layout_width="0dp"
-            android:layout_weight="8"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners"/>
+            android:layout_weight="8"
+            android:background="@drawable/rounded_corners"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="10dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/CVVLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="403dp"
+        android:layout_height="65dp"
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@+id/ExpiryDateLayout"
-        tools:layout_editor_absoluteX="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp">
+        tools:layout_editor_absoluteX="0dp">
         >
 
         <TextView
@@ -98,32 +95,33 @@
             android:textSize="20dp" />
 
         <EditText
-            android:padding="10dp"
             android:id="@+id/CVVField"
             android:layout_width="0dp"
-            android:layout_weight="5"
-            android:inputType="number"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners"/>
+            android:layout_weight="5"
+            android:background="@drawable/rounded_corners"
+            android:inputType="number"
+            android:padding="10dp"
+            android:maxLength="3"/>
 
         <TextView
             android:id="@+id/PostalCodeText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_weight="4"
             android:text="Postal Code"
             android:textSize="20dp"
             android:layout_marginStart="10dp"/>
 
         <EditText
-            android:padding="10dp"
             android:id="@+id/PostalCodeField"
             android:layout_width="0dp"
-            android:layout_weight="5"
-            android:inputType="text"
             android:layout_height="wrap_content"
+            android:layout_weight="5"
             android:background="@drawable/rounded_corners"
-
+            android:inputType="text"
+            android:padding="10dp"
+            android:maxLength="8"
 
             />
     </LinearLayout>
@@ -140,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
         android:background="@drawable/rounded_corners"
-        android:backgroundTint="@color/grey"/>
+        android:onClick="OnClickListener" />
         />
 
 
