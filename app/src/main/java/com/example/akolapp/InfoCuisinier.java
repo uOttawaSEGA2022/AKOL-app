@@ -45,6 +45,7 @@ public class InfoCuisinier extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_cuisinier);
+
         db = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
@@ -108,6 +109,7 @@ public class InfoCuisinier extends AppCompatActivity {
             UploadImageCheck();
 
         }
+
     }
 
     void FirstPage(){
