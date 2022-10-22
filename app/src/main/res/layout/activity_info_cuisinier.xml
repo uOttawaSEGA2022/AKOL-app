@@ -155,6 +155,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/grey"
+        android:textColor="@color/white"
         />
 
 
