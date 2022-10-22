@@ -54,26 +54,31 @@ public class FirstPage extends AppCompatActivity {
                 }
             }
         });
-        DocumentReference docIdRef2 = storage.collection("ClientUser").document(currID);
-        docIdRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "Document exists!");
-                        welcomeTxt.setText("Welcome, you are connected as a client");
+        if(currID .equals("h2OL7WZbSeb63xjcjNhoR8bY7Ps1")){
+            welcomeTxt.setText("Welcome you are connected as an admin");
+        }
+        else {
+            DocumentReference docIdRef2 = storage.collection("ClientUser").document(currID);
+            docIdRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "Document exists!");
+                            welcomeTxt.setText("Welcome, you are connected as a client");
 
+                        } else {
+                            Log.d(TAG, "Document does not exist!");
+                        }
                     } else {
-                        Log.d(TAG, "Document does not exist!");
+                        Log.d(TAG, "Failed with: ", task.getException());
+
                     }
-                } else {
-                    Log.d(TAG, "Failed with: ", task.getException());
-
                 }
-            }
-        });
+            });
 
+        }
 
 
 
