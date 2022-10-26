@@ -15,6 +15,13 @@
         android:theme="@style/Theme.AKOLApp"
         tools:targetApi="31">
         <activity
+            android:name=".ComplaintsPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".FirstPage"
             android:exported="false">
             <meta-data
@@ -35,7 +42,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".InfoClient"
             android:exported="false">
@@ -63,17 +69,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
-    <activity
-        android:name=".SignUpPage"
-        android:exported="false">
-        <meta-data
-            android:name="android.app.lib_name"
-            android:value="" />
-    </activity>
-
-
-        </application>
+        <activity
+            android:name=".SignUpPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+    </application>
 
 </manifest>
