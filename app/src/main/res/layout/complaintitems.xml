@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/numberview"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ChefName"
+        android:textColor="@color/black"
+        android:layout_toEndOf="@id/numberview"
+        tools:text="Chef Name:"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Title"
+        android:textColor="@color/black"
+        android:layout_below="@id/ChefName"
+        android:layout_toEndOf="@id/numberview"
+        tools:text="Complaint Title:"
+        android:textSize="20dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/numberview"
+        android:layout_marginTop="10dp"
+        android:background="@color/black"
+        />
+
+
+</RelativeLayout>
