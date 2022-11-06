@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Complaints">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/blanka"
+        android:text="AKOL"
+        android:textSize="80dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/FirstSentence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Complaints"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/Title"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="@id/Title"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <LinearLayout
+        android:id="@+id/ChefNameFirstLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/FirstSentence"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameFirstField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      15"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameSecondLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameFirstLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+    <EditText
+        android:padding="10dp"
+        android:id="@+id/ChefNameSecondField"
+        android:layout_width="0dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_corners"
+        android:text="Chef name      13"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameThirdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameSecondLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameThirdField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      11"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameFourthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameThirdLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameFourthField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      9"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameFifthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameFourthLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameFifthField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      7"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameSixthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameFifthLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameSixthField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      5"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameSeventhLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameSixthLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameSeventhField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      3"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameEighthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameSeventhLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameEighthField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      2"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ChefNameNinthLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/ChefNameEighthLayout"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp">
+
+
+        <EditText
+            android:padding="10dp"
+            android:id="@+id/ChefNameNinthField"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corners"
+            android:text="Chef name      1"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            />
+
+    </LinearLayout>
+    RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ComplaintsPage">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ComplaintsRecycled"
+        />
+
+</RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
