@@ -26,7 +26,6 @@ public class ComAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.ChefNameView.setText(items.get(position).getChefName());
         holder.TitleView.setText(items.get(position).getComplaintTitle());
         holder.NumberView.setText(items.get(position).getComplaintsNum());
     }

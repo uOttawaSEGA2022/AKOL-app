@@ -5,19 +5,12 @@ public class ComplaintsGp {
     String ComplaintTitle;
     int ComplaintsNum;
 
-    public ComplaintsGp(String chefName, String complaintTitle, int complaintsNum) {
-        ChefName = chefName;
+    public ComplaintsGp(String complaintTitle, int complaintsNum) {
+
         ComplaintTitle = complaintTitle;
         ComplaintsNum = complaintsNum;
     }
 
-    public String getChefName() {
-        return ChefName;
-    }
-
-    public void setChefName(String chefName) {
-        ChefName = chefName;
-    }
 
     public String getComplaintTitle() {
         return ComplaintTitle;

@@ -6,11 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".ComplaintsPage">
 
+    <TextView
+        android:id="@+id/compl"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ComplaintsRecycled"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="7dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        tools:text="The Complaint :" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/ComplaintsRecycled"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="679dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

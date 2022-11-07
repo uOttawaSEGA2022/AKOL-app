@@ -14,10 +14,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ChefName"
+        android:id="@+id/Name"
         android:textColor="@color/black"
         android:layout_toEndOf="@id/numberview"
-        tools:text="Chef Name:"
+        tools:text="The Complaint:"
         android:textSize="20dp"
         />
     <TextView
@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/Title"
         android:textColor="@color/black"
-        android:layout_below="@id/ChefName"
+        android:layout_below="@id/Name"
         android:layout_toEndOf="@id/numberview"
-        tools:text="Complaint Title:"
+        tools:text=""
         android:textSize="20dp"
         />
     <LinearLayout
