@@ -1,14 +1,13 @@
 package com.example.akolapp;
 
 public class ComplaintsGp {
-    String ChefName;
     String ComplaintTitle;
     int ComplaintsNum;
 
     public ComplaintsGp(String complaintTitle, int complaintsNum) {
 
-        ComplaintTitle = complaintTitle;
-        ComplaintsNum = complaintsNum;
+       this.ComplaintTitle = complaintTitle;
+       this.ComplaintsNum = complaintsNum;
     }
 
 

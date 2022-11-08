@@ -32,6 +32,6 @@ public class ComAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return ComplaintsPage.n;
     }
 }

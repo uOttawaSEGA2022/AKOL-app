@@ -31,15 +31,15 @@ import kotlinx.coroutines.channels.ProduceKt;
 public class ComplaintsPage extends AppCompatActivity {
     private FirebaseFirestore db;
      List<ComplaintsGp> items;
-    Integer n;
+    static Integer n;
+    String currID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaints_page);
-        String ChefName="";
-        String Complaints="";
         db = FirebaseFirestore.getInstance();
-        currID=hibapage.currID;
+        currID= " 0evZTdl5lwN3b9gykASVTgZ7tpz1";
+        n=0;
         DocumentReference docIdRef = db.collection("complaints").document(currID);
         docIdRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
