@@ -44,6 +44,7 @@ public class FirstPage extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "Document exists!");
                         welcomeTxt.setText("Welcome, you are connected as a cuisinier");
+                        gotoCuisinier();
 
                     } else {
                         Log.d(TAG, "Document does not exist!");
@@ -56,6 +57,8 @@ public class FirstPage extends AppCompatActivity {
         });
         if(currID .equals("h2OL7WZbSeb63xjcjNhoR8bY7Ps1")){
             welcomeTxt.setText("Welcome you are connected as an admin");
+            complaint();
+
         }
         else {
             DocumentReference docIdRef2 = storage.collection("ClientUser").document(currID);
@@ -93,10 +96,16 @@ public class FirstPage extends AppCompatActivity {
 
 
     }
+    void complaint(){
+        Intent intent = new Intent(this,ComplaintsChef.class);
+        startActivity(intent);
+    }
     public void LogOut(){
         Intent intent = new Intent(FirstPage.this,LoginPage.class);
         startActivity(intent);
-
-
+    }
+    public void gotoCuisinier(){
+        Intent intent = new Intent(FirstPage.this,CuisinierMain.class);
+        startActivity(intent);
     }
 }
