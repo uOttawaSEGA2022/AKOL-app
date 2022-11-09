@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -73,24 +75,35 @@ public class InfoCuisinier extends AppCompatActivity {
     }
 
     private void UploadImageCheck(){
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Image is being uploaded");
+        pd.show();
+
         final String key = currID;
         StorageReference imgRef = firebaseStorage.child("images/"+key);
+        imgRef.putFile(VoidCheckURL);
+        //Toast.makeText(InfoCuisinier.this,"allo allo",Toast.LENGTH_SHORT).show();
+
         imgRef.putFile(VoidCheckURL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                pd.dismiss();
                 Toast.makeText(InfoCuisinier.this, "Image uploaded", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
                 Toast.makeText(InfoCuisinier.this, "Some error occured, please try again", Toast.LENGTH_SHORT).show();
 
             }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progressPercentage = snapshot.getBytesTransferred();
+                pd.setMessage("Percentage: "+(int)progressPercentage );
+            }
         });
-
-// Create a reference to 'images/mountains.jpg'
-
-// While the file names are the same, the references point to different files
 
     }
     private void ImageSelector(){
@@ -143,6 +156,8 @@ public class InfoCuisinier extends AppCompatActivity {
         cuisinier.put("address", address);
         cuisinier.put("postal code", ZIP);
         cuisinier.put("description", description);
+        cuisinier.put("Ban","Not Banned");
+        cuisinier.put("Ban period","Not specified");
 
         DocumentReference currUser = db.collection("cuisinier").document(currID);
 
