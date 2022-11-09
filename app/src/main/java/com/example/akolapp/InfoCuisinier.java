@@ -156,6 +156,8 @@ public class InfoCuisinier extends AppCompatActivity {
         cuisinier.put("address", address);
         cuisinier.put("postal code", ZIP);
         cuisinier.put("description", description);
+        cuisinier.put("Ban","Not Banned");
+        cuisinier.put("Ban period","Not specified");
 
         DocumentReference currUser = db.collection("cuisinier").document(currID);
 
