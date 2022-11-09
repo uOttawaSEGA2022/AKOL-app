@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,6 +30,8 @@ public class ComplaintsChef extends AppCompatActivity implements RecyclerInterfa
     ArrayList<chefComplaintBlock> arr;
     ChefComplaints_RecyclerView_adapter myAdapter;
     FirebaseFirestore db;
+    private Button SignOut;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class ComplaintsChef extends AppCompatActivity implements RecyclerInterfa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_complaints);
         recyclerView = findViewById(R.id.ChefList);
+        SignOut = (Button) findViewById(R.id.SignOutButton);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
@@ -41,9 +47,19 @@ public class ComplaintsChef extends AppCompatActivity implements RecyclerInterfa
         myAdapter = new ChefComplaints_RecyclerView_adapter(ComplaintsChef.this,arr,this);
         recyclerView.setAdapter(myAdapter);
         EventChangeListener();
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                LogOut();
 
+            }
+        });
 
-
+    }
+    public void LogOut(){
+        Intent intent = new Intent(ComplaintsChef.this,LoginPage.class);
+        startActivity(intent);
     }
 
     private void EventChangeListener() {

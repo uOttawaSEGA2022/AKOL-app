@@ -61,7 +61,7 @@ public class chefComplaintBlock implements Parcelable {
         return ComplaintsNumber;
     }
 
-    public String getId() {
+    public String getIds() {
         return id;
     }
 
