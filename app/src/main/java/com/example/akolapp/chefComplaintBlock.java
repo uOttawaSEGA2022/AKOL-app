@@ -3,12 +3,14 @@ package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.util.ArrayList;
 
 
-public class chefComplaintBlock {
+public class chefComplaintBlock implements Parcelable {
     private String chefName;
     private String ComplaintsNumber;
     private String id;
@@ -23,6 +25,25 @@ public class chefComplaintBlock {
         Log.d(TAG,this.complaints.toString() + this.ComplaintsNumber);
 
     }
+
+    protected chefComplaintBlock(Parcel in) {
+        chefName = in.readString();
+        ComplaintsNumber = in.readString();
+        id = in.readString();
+        complaints = in.createStringArrayList();
+    }
+
+    public static final Creator<chefComplaintBlock> CREATOR = new Creator<chefComplaintBlock>() {
+        @Override
+        public chefComplaintBlock createFromParcel(Parcel in) {
+            return new chefComplaintBlock(in);
+        }
+
+        @Override
+        public chefComplaintBlock[] newArray(int size) {
+            return new chefComplaintBlock[size];
+        }
+    };
 
     public void setChefName(String chefName) {
         this.id = chefName;
@@ -45,6 +66,19 @@ public class chefComplaintBlock {
     }
 
     public ArrayList<String> getComplaints() {
-        return complaints;
+        return this.complaints;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(chefName);
+        parcel.writeString(ComplaintsNumber);
+        parcel.writeString(id);
+        parcel.writeStringList(complaints);
     }
 }

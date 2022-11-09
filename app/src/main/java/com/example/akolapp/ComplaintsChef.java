@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class ComplaintsChef extends AppCompatActivity {
+public class ComplaintsChef extends AppCompatActivity implements RecyclerInterface {
     RecyclerView recyclerView;
     ArrayList<chefComplaintBlock> arr;
     ChefComplaints_RecyclerView_adapter myAdapter;
@@ -37,7 +38,7 @@ public class ComplaintsChef extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
         arr = new ArrayList<chefComplaintBlock>();
-        myAdapter = new ChefComplaints_RecyclerView_adapter(ComplaintsChef.this,arr);
+        myAdapter = new ChefComplaints_RecyclerView_adapter(ComplaintsChef.this,arr,this);
         recyclerView.setAdapter(myAdapter);
         EventChangeListener();
 
@@ -77,4 +78,12 @@ public class ComplaintsChef extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void clicked(int pos) {
+        Intent intent = new Intent(ComplaintsChef.this,ComplaintsList.class);
+        intent.putExtra("chef",arr.get(pos));
+        startActivity(intent);
+
+
+    }
 }
