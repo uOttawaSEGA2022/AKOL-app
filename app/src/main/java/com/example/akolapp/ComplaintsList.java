@@ -82,7 +82,7 @@ public class ComplaintsList extends AppCompatActivity implements RecyclerInterfa
                             }
                         });
 
-                goBack();
+                goBackDiscard();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +181,15 @@ public class ComplaintsList extends AppCompatActivity implements RecyclerInterfa
         Intent intent = new Intent(ComplaintsList.this,ComplaintsChef.class);
 
         startActivity(intent);
+
+    }
+    public void goBackDiscard(){
+        Toast.makeText(this,"Complaints have been deleted",Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(ComplaintsList.this,ComplaintsChef.class);
+
+        startActivity(intent);
+
 
     }
 
