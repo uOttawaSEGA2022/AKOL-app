@@ -41,8 +41,6 @@ public class ComplaintsList extends AppCompatActivity implements RecyclerInterfa
     TextView txtV1,txtV2;
     FirebaseFirestore db;
     Map<String,Object> curChef;
-    String banDays="0";
-    String banHours="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
