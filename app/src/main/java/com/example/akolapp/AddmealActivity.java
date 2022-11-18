@@ -131,8 +131,6 @@ public class AddmealActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(getApplicationContext(), "Error, Please contact the Support", Toast.LENGTH_LONG).show();
                             }
-
-
                         }
                     });
 
