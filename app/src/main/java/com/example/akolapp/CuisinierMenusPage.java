@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,7 +38,7 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
     RecyclerView recyclerViewMenu;
     RecipePublished_RecyclerView_adapter myAdapterPublished;
     RecipeLists_RecyclerView_adapter myAdapterMenu;
-
+    private Button SignOut;
     FirebaseFirestore db;
     private String currID;
     ArrayList<Recipe> arrPublished;
@@ -49,6 +50,8 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuisinier_menus_page);
         auth = FirebaseAuth.getInstance();
+        SignOut = (Button) findViewById(R.id.SignOutButton);
+
         welcomeChef = (TextView) findViewById(R.id.Welcoming);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +60,8 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
                 Snackbar.make(view, "Add a recipe", Snackbar.LENGTH_LONG)
                         .setAction("Add", null).show();
                 //this will be completed when the newRecipe page will be created
-                Intent intent = new Intent(CuisinierMenusPage.this,AddmealActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(CuisinierMenusPage.this,AddmealActivity.class);
+                //startActivity(intent);
             }
         });
         recyclerViewPublished = findViewById(R.id.PublishedRecipesList);
@@ -76,6 +79,14 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
         recyclerViewMenu.setAdapter(myAdapterMenu);
 
         EventChangeListener();
+        SignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                LogOut();
+
+            }
+        });
 
     }
     private void EventChangeListener() {
@@ -119,9 +130,13 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
 
 
     }
+    public void LogOut(){
+        Intent intent = new Intent(CuisinierMenusPage.this,LoginPage.class);
+        startActivity(intent);
+    }
     @Override
     public void clicked(int pos, boolean published) {
-        if(published){
+       /* if(published){
             Intent intent = new Intent(CuisinierMenusPage.this,PublishedRecipes.class);//publishedRecipe is hiba's page name
             intent.putExtra("Recipe", (Parcelable) arrPublished.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
             startActivity(intent);
@@ -130,8 +145,9 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
             Intent intent = new Intent(CuisinierMenusPage.this,MyRecipes.class);//MenuRecipe is hiba's page name
             intent.putExtra("Recipe", (Parcelable) arrMenu.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
             startActivity(intent);
-        }
+        }*/
 
 
     }
+
 }
