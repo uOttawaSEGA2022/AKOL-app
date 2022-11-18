@@ -57,7 +57,7 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
                 Snackbar.make(view, "Add a recipe", Snackbar.LENGTH_LONG)
                         .setAction("Add", null).show();
                 //this will be completed when the newRecipe page will be created
-                Intent intent = new Intent(CuisinierMain.this,AddmealActivity.class);
+                Intent intent = new Intent(CuisinierMenusPage.this,AddmealActivity.class);
                 startActivity(intent);
             }
         });
