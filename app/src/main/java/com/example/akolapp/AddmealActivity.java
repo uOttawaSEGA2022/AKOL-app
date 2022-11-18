@@ -63,59 +63,80 @@ public class AddmealActivity extends AppCompatActivity {
                 String mealtyp= mealtype.getText().toString().trim();
                 String allerg= allergens.getText().toString().trim();
                 ID = Auth.getUid();
-                //if(TextUtils.isEmpty(mName)
-
-                DocumentReference user = db.collection("cuisinier").document(ID);
-                user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.exists()){
-                             n=Integer.valueOf(documentSnapshot.getString("number of recipe"));
-
-                            Map<String, Object> chef = new HashMap<>();
-                            chef.put("Name", mName);
-                            chef.put("Ingredients", recipe);
-                            chef.put("Description", Description);
-                            chef.put("Meal type",mealtyp);
-                            chef.put("Prix",prix);
-                            chef.put("Cuisine type",cuis);
-                            chef.put("Allergens",allerg);
-                            if(publ.isChecked()){
-                                chef.put("published","yes");
-                            }
-                            else if(!publ.isChecked()){
-                                chef.put("published","no");
-                            }
-
-
-                            Map<String, Object> Meals= new HashMap<>();
-                            Meals.put("Recipe"+n,chef);
-                            Meals.put("number of recipe",String.valueOf(n+1));
-
-
-                            user.update(Meals).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(AddmealActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(AddmealActivity.this,CuisinierMenusPage.class);
-                                    startActivity(intent);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(AddmealActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"Error, Please contact the Support",Toast.LENGTH_LONG).show();
-                        }
-
-
+                if(TextUtils.isEmpty(mName) || TextUtils.isEmpty(Description) || TextUtils.isEmpty(recipe) || TextUtils.isEmpty(prix) || TextUtils.isEmpty(cuis) || TextUtils.isEmpty(mealtyp) || TextUtils.isEmpty(allerg)){
+                   if(TextUtils.isEmpty(mName)) {
+                       Name.setError("Meal Name is required!!");
+                   }
+                    if(TextUtils.isEmpty(Description)) {
+                        MealDescription.setError("Meal Description is required!!");
                     }
-                });
+                    if(TextUtils.isEmpty(recipe)) {
+                        MealRecipe.setError("Meal Recipe is required!!");
+                    }
+                    if(TextUtils.isEmpty(prix)) {
+                        price.setError("Meal Price is required!!");
+                    }
+                    if(TextUtils.isEmpty(cuis)) {
+                        typeCui.setError("Cuisine Type is required!!");
+                    }
+                    if(TextUtils.isEmpty(mealtyp)) {
+                        mealtype.setError("Meal Type is required!!");
+                    }
+                    if(TextUtils.isEmpty(allerg)) {
+                        allergens.setError("Allergens is required!!");
+                    }
+                    return;
+                }
+                else {
+                    DocumentReference user = db.collection("cuisinier").document(ID);
+                    user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.exists()) {
+                                n = Integer.valueOf(documentSnapshot.getString("number of recipe"));
+
+                                Map<String, Object> chef = new HashMap<>();
+                                chef.put("Name", mName);
+                                chef.put("Ingredients", recipe);
+                                chef.put("Description", Description);
+                                chef.put("Meal type", mealtyp);
+                                chef.put("Prix", prix);
+                                chef.put("Cuisine type", cuis);
+                                chef.put("Allergens", allerg);
+                                if (publ.isChecked()) {
+                                    chef.put("published", "yes");
+                                } else if (!publ.isChecked()) {
+                                    chef.put("published", "no");
+                                }
 
 
+                                Map<String, Object> Meals = new HashMap<>();
+                                Meals.put("Recipe" + n, chef);
+                                Meals.put("number of recipe", String.valueOf(n + 1));
+
+
+                                user.update(Meals).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(AddmealActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(AddmealActivity.this, CuisinierMenusPage.class);
+                                        startActivity(intent);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(AddmealActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error, Please contact the Support", Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+                    });
+
+                }
                 }
         });
     }
