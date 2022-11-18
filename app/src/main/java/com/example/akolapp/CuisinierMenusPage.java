@@ -56,9 +56,9 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
             public void onClick(View view) {
                 Snackbar.make(view, "Add a recipe", Snackbar.LENGTH_LONG)
                         .setAction("Add", null).show();
-                // this will be completed when the newRecipe page will be created
-                /*Intent intent = new Intent(CuisinierMain.this,NewRecipe.class);
-                startActivity(intent);*/
+                //this will be completed when the newRecipe page will be created
+                Intent intent = new Intent(CuisinierMenusPage.this,AddmealActivity.class);
+                startActivity(intent);
             }
         });
         recyclerViewPublished = findViewById(R.id.PublishedRecipesList);
@@ -121,7 +121,7 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
     }
     @Override
     public void clicked(int pos, boolean published) {
-        /*if(published){
+        if(published){
             Intent intent = new Intent(CuisinierMenusPage.this,PublishedRecipes.class);//publishedRecipe is hiba's page name
             intent.putExtra("Recipe", (Parcelable) arrPublished.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
             startActivity(intent);
@@ -130,7 +130,7 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
             Intent intent = new Intent(CuisinierMenusPage.this,MyRecipes.class);//MenuRecipe is hiba's page name
             intent.putExtra("Recipe", (Parcelable) arrMenu.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
             startActivity(intent);
-        }*/
+        }
 
 
     }
