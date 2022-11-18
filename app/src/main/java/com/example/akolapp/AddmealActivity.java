@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,7 +33,8 @@ public class AddmealActivity extends AppCompatActivity {
     static FirebaseAuth Auth;
     static EditText Name,MealDescription,MealRecipe,price,typeCui,mealtype,allergens;
     static Button add;
-
+    int n;
+    CheckBox publ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,7 @@ public class AddmealActivity extends AppCompatActivity {
         allergens=findViewById(R.id.Allergens);
         add=findViewById(R.id.Add);
         db= FirebaseFirestore.getInstance();
+        publ=findViewById(R.id.check);
 
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -57,41 +62,60 @@ public class AddmealActivity extends AppCompatActivity {
                 String cuis= typeCui.getText().toString().trim();
                 String mealtyp= mealtype.getText().toString().trim();
                 String allerg= allergens.getText().toString().trim();
-                int n=0;
+                ID = Auth.getUid();
+                //if(TextUtils.isEmpty(mName)
+
                 DocumentReference user = db.collection("cuisinier").document(ID);
-                user.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                             n=Integer.valueOf(documentSnapshot.getString("number of recipe"));
+
+                            Map<String, Object> chef = new HashMap<>();
+                            chef.put("Name", mName);
+                            chef.put("Ingredients", recipe);
+                            chef.put("Description", Description);
+                            chef.put("Meal type",mealtyp);
+                            chef.put("Prix",prix);
+                            chef.put("Cuisine type",cuis);
+                            chef.put("Allergens",allerg);
+                            if(publ.isChecked()){
+                                chef.put("published","yes");
+                            }
+                            else if(!publ.isChecked()){
+                                chef.put("published","no");
+                            }
+
+
+                            Map<String, Object> Meals= new HashMap<>();
+                            Meals.put("Recipe"+n,chef);
+                            Meals.put("number of recipe",String.valueOf(n+1));
+
+
+                            user.update(Meals).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(AddmealActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddmealActivity.this,CuisinierMenusPage.class);
+                                    startActivity(intent);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(AddmealActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"Error, Please contact the Support",Toast.LENGTH_LONG).show();
+                        }
+
 
                     }
                 });
-                    Map<String, Object> chef = new HashMap<>();
-                    chef.put("Name", mName);
-                    chef.put("Ingredients", recipe);
-                    chef.put("Description", Description);
-                    chef.put("Meal type",mealtyp);
-                    chef.put("Prix",prix);
-                    chef.put("Cuisine type",cuis);
-                    chef.put("Allergens",allerg);
-
-                    Map<String, Object> Meals= new HashMap<>();
-                    Meals.put("Recipe",chef);
-                    Meals.put("number of recipe",n+1)
-                    ID = "52OzAPfiECWHTGp7i4aHbf44akM2";/*Auth.getUid();*/
 
 
-
-                    user.update(Meals).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(AddmealActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddmealActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
         });
     }

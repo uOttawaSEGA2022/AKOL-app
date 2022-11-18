@@ -156,6 +156,7 @@ public class InfoCuisinier extends AppCompatActivity {
         cuisinier.put("address", address);
         cuisinier.put("postal code", ZIP);
         cuisinier.put("description", description);
+        cuisinier.put("number of recipe",String.valueOf(0));
         cuisinier.put("Ban","Not Banned");
         cuisinier.put("Ban period","Not specified");
 
