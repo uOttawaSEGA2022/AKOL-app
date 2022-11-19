@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PublishedRecipes">
+    tools:context=".MyRecipes">
+
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
@@ -19,7 +20,7 @@
         android:textColor="@color/black"
         />
     <LinearLayout
-        android:id="@+id/MoveToMyRecipesModifyBackLayout"
+        android:id="@+id/DeleteMoveToPublishedRecipesLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -30,48 +31,35 @@
 
 
         <Button
-            android:id="@+id/MoveToMyRecipesButton"
+            android:id="@+id/DeleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/grey"
-            android:text="Move to my recipes"
+            android:text="Delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
             />
         <Button
-            android:id="@+id/ModifyButton"
+            android:id="@+id/MoveToPublishedRecipesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/grey"
-            android:text="Modify"
+            android:text="Move to published recipes "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
             />
-        <Button
-            android:id="@+id/BackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/grey"
-            android:text="Back"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            />
-
 
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/RecipesLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/MoveToMyRecipesModifyBackLayout"
+        app:layout_constraintTop_toBottomOf="@+id/DeleteMoveToPublishedRecipesLayout"
         tools:layout_editor_absoluteX="0dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp">
@@ -90,6 +78,5 @@
 
             />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
