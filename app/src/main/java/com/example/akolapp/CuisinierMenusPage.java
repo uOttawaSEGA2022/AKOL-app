@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,7 +78,8 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
         myAdapterMenu = new RecipeLists_RecyclerView_adapter(CuisinierMenusPage.this,arrMenu,this,false);
         recyclerViewPublished.setAdapter(myAdapterPublished);
         recyclerViewMenu.setAdapter(myAdapterMenu);
-
+        myAdapterMenu.notifyDataSetChanged();
+        myAdapterPublished.notifyDataSetChanged();
         EventChangeListener();
         SignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,16 +138,18 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
     }
     @Override
     public void clicked(int pos, boolean published) {
-       /* if(published){
+       if(published){
             Intent intent = new Intent(CuisinierMenusPage.this,PublishedRecipes.class);//publishedRecipe is hiba's page name
             intent.putExtra("Recipe", (Parcelable) arrPublished.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
-            startActivity(intent);
+
+           startActivity(intent);
         }
         else  {
-            Intent intent = new Intent(CuisinierMenusPage.this,MyRecipes.class);//MenuRecipe is hiba's page name
-            intent.putExtra("Recipe", (Parcelable) arrMenu.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
-            startActivity(intent);
-        }*/
+            Intent intent = new Intent(CuisinierMenusPage.this,UnpublishedRecipes.class);//MenuRecipe is hiba's page name
+            intent.putExtra("Recipe",  arrMenu.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
+
+           startActivity(intent);
+        }
 
 
     }
