@@ -2,7 +2,6 @@ package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,27 +25,27 @@ import org.w3c.dom.Text;
 
 import java.util.Map;
 
-public class PublishedRecipes extends AppCompatActivity {
-     TextView recipeName;
-     TextView allergens;
-     TextView cuisineType;
-     TextView description;
-     TextView ingredients;
-     TextView mealType;
-     TextView price;
-     Button back;
-     Button toMyRecipes;
+public class UnpublishedRecipes extends AppCompatActivity {
+    TextView recipeName;
+    TextView allergens;
+    TextView cuisineType;
+    TextView description;
+    TextView ingredients;
+    TextView mealType;
+    TextView price;
+    Button back;
+    Button toMyRecipes;
     FirebaseFirestore db;
     RecipePublished_RecyclerView_adapter myAdapter;
 
     //private String currID;
     private FirebaseAuth auth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_published_recipes);
+        setContentView(R.layout.activity_unpublished_recipes);
+
 
         Recipe recipe = getIntent().getParcelableExtra("Recipe");
         recipeName = findViewById(R.id.RecipeName);
@@ -68,7 +67,7 @@ public class PublishedRecipes extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PublishedRecipes.this,CuisinierMenusPage.class);
+                Intent intent = new Intent(UnpublishedRecipes.this,CuisinierMenusPage.class);
                 startActivity(intent);
             }
         });
@@ -92,13 +91,13 @@ public class PublishedRecipes extends AppCompatActivity {
                                     String key = mapElement.getKey();
                                     if (key.startsWith("Recipe") && ((Map<String,String>)mapElement.getValue()).get("Name").toString().equals(recipe.getRecipeName())) {
                                         Map<String,String> recipeDb = (Map<String,String>)mapElement.getValue();
-                                        recipeDb.put("published","no");
+                                        recipeDb.put("published","yes");
                                         //starts here
                                         CuisinierInfo.put(key,recipeDb);
                                         docIdRef.set(CuisinierInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                Log.d(TAG, "Recipe is unpublished now");
+                                                                                             Log.d(TAG, "Recipe is unpublished now");
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
@@ -119,13 +118,12 @@ public class PublishedRecipes extends AppCompatActivity {
                         }
                     }
                 });
-                Intent intent = new Intent(PublishedRecipes.this,CuisinierMenusPage.class);
+                Intent intent = new Intent(UnpublishedRecipes.this,CuisinierMenusPage.class);
                 startActivity(intent);
             }
         });
 
 
 
-
     }
-       }
+}
