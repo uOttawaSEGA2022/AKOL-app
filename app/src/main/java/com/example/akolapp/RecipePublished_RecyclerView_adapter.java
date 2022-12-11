@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecipePublished_RecyclerView_adapter extends RecyclerView.Adapter<RecipeLists_RecyclerView_adapter.MyViewHolder> {
+public class RecipePublished_RecyclerView_adapter extends RecyclerView.Adapter<RecipePublished_RecyclerView_adapter.MyViewHolder1> {
     Context context;
     ArrayList<Recipe> Recipes;
     private final RecyclerInterfaceRecipes recyclerInterface;
@@ -24,25 +24,27 @@ public class RecipePublished_RecyclerView_adapter extends RecyclerView.Adapter<R
     }
     @NonNull
     @Override
-    public RecipeLists_RecyclerView_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecipePublished_RecyclerView_adapter.MyViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater  = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_row2,parent,false);
-        return new RecipeLists_RecyclerView_adapter.MyViewHolder(view,recyclerInterface);
+        return new RecipePublished_RecyclerView_adapter.MyViewHolder1(view,recyclerInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeLists_RecyclerView_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder1 holder, int position) {
         holder.ChefName.setText(Recipes.get(position).getRecipeName());
     }
+
+
 
     @Override
     public int  getItemCount() {
         return Recipes.size();
     }
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder1 extends RecyclerView.ViewHolder{
         TextView ChefName;
         TextView NumOfComplaints;
-        public MyViewHolder(@NonNull View itemView, RecyclerInterfaceRecipes recyclerInterface) {
+        public MyViewHolder1(@NonNull View itemView, RecyclerInterfaceRecipes recyclerInterface) {
             super(itemView);
             ChefName = itemView.findViewById(R.id.ComplaintTitle);
             NumOfComplaints = itemView.findViewById(R.id.complaintsNumber);

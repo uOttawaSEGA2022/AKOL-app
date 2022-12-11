@@ -1,6 +1,9 @@
 package com.example.akolapp;
 
-public class Recipe {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Recipe implements Parcelable {
     private String recipeName;
     private String allergens;
     private String cuisineType;
@@ -17,6 +20,28 @@ public class Recipe {
         this.mealType = mealType;
         this.price = price;
     }
+
+    protected Recipe(Parcel in) {
+        recipeName = in.readString();
+        allergens = in.readString();
+        cuisineType = in.readString();
+        description = in.readString();
+        ingredients = in.readString();
+        mealType = in.readString();
+        price = in.readString();
+    }
+
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
 
     public String getRecipeName() {
         return recipeName;
@@ -72,5 +97,22 @@ public class Recipe {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(recipeName);
+        parcel.writeString(allergens);
+        parcel.writeString(cuisineType);
+        parcel.writeString(description);
+        parcel.writeString(ingredients);
+        parcel.writeString(mealType);
+        parcel.writeString(price);
+
     }
 }
