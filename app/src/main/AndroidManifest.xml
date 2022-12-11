@@ -15,6 +15,20 @@
         android:theme="@style/Theme.AKOLApp"
         tools:targetApi="31">
         <activity
+            android:name=".PopularRecipesHRV"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Client"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MyRecipes"
             android:exported="false">
             <meta-data
