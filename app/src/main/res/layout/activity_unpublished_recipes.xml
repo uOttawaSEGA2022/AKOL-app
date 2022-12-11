@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PublishedRecipes">
+    tools:context=".UnpublishedRecipes">
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/grey"
-            android:text="Move to my recipes"
+            android:text="Publish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
@@ -129,3 +129,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
