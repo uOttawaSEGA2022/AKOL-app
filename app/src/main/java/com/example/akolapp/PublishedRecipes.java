@@ -2,6 +2,7 @@ package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,10 +42,12 @@ public class PublishedRecipes extends AppCompatActivity {
     //private String currID;
     private FirebaseAuth auth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_published_recipes);
+
         Recipe recipe = getIntent().getParcelableExtra("Recipe");
         recipeName = findViewById(R.id.RecipeName);
         cuisineType = findViewById(R.id.CuisineType);
@@ -123,5 +126,6 @@ public class PublishedRecipes extends AppCompatActivity {
 
 
 
+
     }
-}
+       }
