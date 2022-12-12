@@ -8,7 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.widget.Button;
-
+import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.AppBarLayout;
 
 import com.example.akolapp.databinding.ActivityClientBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -28,7 +29,7 @@ ViewPager viewPager;
         binding = ActivityClientBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
-        addFragment();
+
 
         binding.bottomNavigationView.setOnItemSelectedListener( item -> {
 
@@ -47,17 +48,7 @@ ViewPager viewPager;
             return true;
         });
     }
-    private void addFragment(){
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment( new InProgressFragment(), "In progress" );
-        adapter.addFragment(new DoneFragment(), "Done");
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
 
-
-    }
     private void replaceFragment( Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
