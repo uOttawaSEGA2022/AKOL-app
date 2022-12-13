@@ -11,7 +11,9 @@ public class Recipe implements Parcelable {
     private String ingredients;
     private String mealType;
     private String price;
-    public Recipe(String recipeName, String allergens, String cuisineType, String description, String ingredients, String mealType, String price) {
+    private String id;
+    private String chefName;
+    public Recipe(String recipeName, String allergens, String cuisineType, String description, String ingredients, String mealType, String price,String id,String chefName) {
         this.recipeName = recipeName;
         this.allergens = allergens;
         this.cuisineType = cuisineType;
@@ -19,6 +21,9 @@ public class Recipe implements Parcelable {
         this.ingredients = ingredients;
         this.mealType = mealType;
         this.price = price;
+        this.id = id;
+        this.chefName = chefName;
+
     }
 
     protected Recipe(Parcel in) {
@@ -29,6 +34,8 @@ public class Recipe implements Parcelable {
         ingredients = in.readString();
         mealType = in.readString();
         price = in.readString();
+        id = in.readString();
+        chefName = in.readString();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -99,6 +106,22 @@ public class Recipe implements Parcelable {
         this.price = price;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getChefName() {
+        return chefName;
+    }
+
+    public void setChefName(String chefName) {
+        this.chefName = chefName;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -113,6 +136,8 @@ public class Recipe implements Parcelable {
         parcel.writeString(ingredients);
         parcel.writeString(mealType);
         parcel.writeString(price);
+        parcel.writeString(id);
+        parcel.writeString(chefName);
 
     }
 }

@@ -2,15 +2,15 @@ package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,7 +70,7 @@ public class FirstPage extends AppCompatActivity {
                         if (document.exists()) {
                             Log.d(TAG, "Document exists!");
                             welcomeTxt.setText("Welcome, you are connected as a client");
-
+                            gotoClient();
                         } else {
                             Log.d(TAG, "Document does not exist!");
                         }
@@ -106,6 +106,10 @@ public class FirstPage extends AppCompatActivity {
     }
     public void gotoCuisinier(){
         Intent intent = new Intent(FirstPage.this,CuisinierMain.class);
+        startActivity(intent);
+    }
+    public void gotoClient(){
+        Intent intent = new Intent(FirstPage.this,Client.class);
         startActivity(intent);
     }
 }

@@ -9,36 +9,39 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class ChefComplaints_RecyclerView_adapter extends RecyclerView.Adapter<ChefComplaints_RecyclerView_adapter.MyViewHolder> {
+
+public class HomeClientRecyclerViewAdapter extends RecyclerView.Adapter<HomeClientRecyclerViewAdapter.MyViewHolder> {
     Context context;
-    ArrayList<chefComplaintBlock> chefComplaints;
+    List<Recipe> recipesList;
     private final RecyclerInterface recyclerInterface;
-    public ChefComplaints_RecyclerView_adapter(Context context, ArrayList<chefComplaintBlock> chefComplaints, RecyclerInterface recyclerInterface){
-        this.chefComplaints=chefComplaints;
+    public HomeClientRecyclerViewAdapter(Context context, List<Recipe> recipesList, RecyclerInterface recyclerInterface){
+        this.recipesList=recipesList;
         this.context = context;
         this.recyclerInterface = recyclerInterface;
 
     }
-
+    public void setList(List<Recipe> rec){
+        this.recipesList = rec;
+    }
     @NonNull
     @Override
-    public ChefComplaints_RecyclerView_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HomeClientRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater  = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_row,parent,false);
         return new MyViewHolder(view,recyclerInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChefComplaints_RecyclerView_adapter.MyViewHolder holder, int position) {
-        holder.ChefName.setText(chefComplaints.get(position).getChefName());
-        holder.NumOfComplaints.setText(chefComplaints.get(position).getComplaintsNumber());
+    public void onBindViewHolder(@NonNull HomeClientRecyclerViewAdapter.MyViewHolder holder, int position) {
+        holder.ChefName.setText(recipesList.get(position).getRecipeName());
+        holder.NumOfComplaints.setText(recipesList.get(position).getChefName());
     }
 
     @Override
     public int  getItemCount() {
-        return chefComplaints.size();
+        return recipesList.size();
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView ChefName;

@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".DoneFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Done Fragment"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/RecyclerOrders"
+
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

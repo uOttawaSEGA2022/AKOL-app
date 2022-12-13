@@ -1,23 +1,18 @@
 package com.example.akolapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.api.LogDescriptor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -130,6 +125,7 @@ public class InfoClient extends AppCompatActivity {
                     user.put("CVV", Cvv);
                     user.put("Expiration", Exp);
                     user.put("PostalCode", Postalcode);
+                    user.put("NumberOfOrders","0");
                     UserID=Authent.getUid();
 
                     DocumentReference UserF=db.collection("ClientUser").document(UserID);
