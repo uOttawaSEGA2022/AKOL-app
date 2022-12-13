@@ -1,18 +1,17 @@
 package com.example.akolapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,11 +23,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.UUID;
 
 public class InfoCuisinier extends AppCompatActivity {
     FirebaseFirestore db;
@@ -157,6 +152,7 @@ public class InfoCuisinier extends AppCompatActivity {
         cuisinier.put("postal code", ZIP);
         cuisinier.put("description", description);
         cuisinier.put("number of recipe",String.valueOf(0));
+        cuisinier.put("number of orders",String.valueOf(0));
         cuisinier.put("Ban","Not Banned");
         cuisinier.put("Ban period","Not specified");
         cuisinier.put("rating",0);

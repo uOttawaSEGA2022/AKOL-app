@@ -2,12 +2,6 @@ package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -16,22 +10,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInterfaceRecipes {
@@ -108,7 +101,7 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
                             }
                             if (key.startsWith("Recipe")) {
                                 Map<String,String> recipeDb = (Map<String,String>)mapElement.getValue();
-                                Recipe recipe = new Recipe(recipeDb.get("Name"),recipeDb.get("Allergens"),recipeDb.get("Cuisine type"),recipeDb.get("Description"),recipeDb.get("Ingredients"),recipeDb.get("Meal type"),recipeDb.get("Prix"));//to add parameters after taha creates them using mapElement.getValue().get("Recipe Name" or "type of cuisine"...);
+                                Recipe recipe = new Recipe(recipeDb.get("Name"),recipeDb.get("Allergens"),recipeDb.get("Cuisine type"),recipeDb.get("Description"),recipeDb.get("Ingredients"),recipeDb.get("Meal type"),recipeDb.get("Prix"),currID, (String) CuisinierInfo.get("First name")+" "+CuisinierInfo.get("Last name"));//to add parameters after taha creates them using mapElement.getValue().get("Recipe Name" or "type of cuisine"...);
                                 if(recipeDb.get("published").equals("yes")) {
                                     arrPublished.add(recipe);
                                 }

@@ -39,7 +39,8 @@
         android:backgroundTint="@color/grey"
         android:textColor="@color/white"
         android:layout_gravity="start"
-        android:text="Sign out"/>
+        android:text="Sign out"
+        />
 
 
 </LinearLayout>
