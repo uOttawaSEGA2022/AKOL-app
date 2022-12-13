@@ -12,4 +12,5 @@
         android:text="home fragment"
         android:textSize="26dp"/>
 
+
 </FrameLayout>
