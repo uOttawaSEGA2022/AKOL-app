@@ -147,6 +147,7 @@ public class RecipeClientSide extends AppCompatActivity {
                                 order.put("Client name",name);
                                 order.put("ClientID",ID);
                                 order.put("recipe name", recipe.getRecipeName());
+                                order.put("isDone","no");
                                 CuisinierInfo.put("Order" + n,order);
                                 CuisinierInfo.put("number of orders", String.valueOf(n + 1));
 
