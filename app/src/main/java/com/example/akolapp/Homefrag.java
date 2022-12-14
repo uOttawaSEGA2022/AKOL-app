@@ -172,6 +172,8 @@ public class Homefrag extends Fragment implements RecyclerInterfaceRecipes {
                         recyclerViewMenu.setAdapter(myAdapterMenu);
                         myAdapterMenu.notifyDataSetChanged();
                         myAdapterPublished.notifyDataSetChanged();
+                        myAdapterMenu.updateData(arrMenu); // updating adapter's data
+                        myAdapterMenu.notifyDataSetChanged();
 
                     } else {
                         Log.d(TAG, "No such document");
@@ -194,15 +196,18 @@ public class Homefrag extends Fragment implements RecyclerInterfaceRecipes {
         if(published){
             Intent intent = new Intent(getActivity(),PublishedRecipes.class);//publishedRecipe is hiba's page name
             intent.putExtra("Recipe", (Parcelable) arrPublished.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
-
             startActivity(intent);
+            myAdapterMenu.updateData(arrMenu); // updating adapter's data
+            myAdapterMenu.notifyDataSetChanged();
         }
         else  {
             Intent intent = new Intent(getActivity(),UnpublishedRecipes.class);//MenuRecipe is hiba's page name
             intent.putExtra("Recipe",  arrMenu.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
-
             startActivity(intent);
+            myAdapterMenu.updateData(arrMenu); // updating adapter's data
+            myAdapterMenu.notifyDataSetChanged();
         }
+
 
 
     }
