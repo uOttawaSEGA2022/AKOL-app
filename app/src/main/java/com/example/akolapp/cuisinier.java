@@ -20,16 +20,16 @@ import com.google.android.material.tabs.TabLayout;
 
 public class cuisinier extends AppCompatActivity {
 
-    ActivityClientBinding binding;
+    ActivityCuisinierBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityClientBinding.inflate(getLayoutInflater());
+        binding = ActivityCuisinierBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new Homefrag());
 
-        binding.bottomNavigationView.setOnItemSelectedListener( item -> {
+        binding.bottomNav.setOnItemSelectedListener( item -> {
 
             switch (item.getItemId()){
 
@@ -47,7 +47,7 @@ public class cuisinier extends AppCompatActivity {
         });
     }
 
-    private void replaceFragment( Fragment fragment){
+    private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment);
