@@ -42,7 +42,7 @@ public class CuisinierMenusPage extends AppCompatActivity implements RecyclerInt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cuisinier_menus_page);
+        setContentView(R.layout.fragment_homefrag);
         auth = FirebaseAuth.getInstance();
         SignOut = (Button) findViewById(R.id.SignOutButton);
 

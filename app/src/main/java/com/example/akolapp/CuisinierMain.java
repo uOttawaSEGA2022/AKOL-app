@@ -54,7 +54,7 @@ public class CuisinierMain extends AppCompatActivity {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         if(document.getData().get("Ban").equals("Not Banned")){
                             welcome.setText("Welcome, you are connected as a cuisinier. Enjoy making recipes!");
-                            Intent intent = new Intent(CuisinierMain.this,CuisinierMenusPage.class);
+                            Intent intent = new Intent(CuisinierMain.this,cuisinier.class);
                             startActivity(intent);
                         }
                         else {

@@ -141,7 +141,7 @@ public class RecipeClientSide extends AppCompatActivity {
                             if (document.exists()) {
                                 Map<String,Object> CuisinierInfo = document.getData();
 
-                                int n = Integer.valueOf((String) CuisinierInfo.get("number of recipe"));
+                                int n = Integer.valueOf((String) CuisinierInfo.get("number of orders"));
 
                                 Map<String, Object> order = new HashMap<>();
                                 order.put("Client name",name);
