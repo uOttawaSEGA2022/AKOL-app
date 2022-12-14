@@ -30,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * create an instance of this fragment.
  */
 public class Profilefrag extends Fragment {
-    static TextView UserName, UserAdress, UserRating;
+    static TextView UserName, UserAdress, UserRating,UserEmail;
     static ImageView UserPic;
     static Button logoutButton ;
     static String Rating;
@@ -91,7 +91,7 @@ public class Profilefrag extends Fragment {
         Auth=FirebaseAuth.getInstance();
         db= FirebaseFirestore.getInstance();
         ID = Auth.getUid();
-
+        UserEmail=getView().findViewById(R.id.userEmail);
         UserName=getView().findViewById(R.id.username);
         UserAdress=getView().findViewById(R.id.userAddress);
         UserRating=getView().findViewById(R.id.userRating);
@@ -124,6 +124,7 @@ public class Profilefrag extends Fragment {
                     Name=FName+LName;
                     Adress=documentSnapshot.getString("address");
                     Email=documentSnapshot.getString("Email");
+                    UserEmail.setText(Email);
                     UserName.setText(Name);
                     UserRating.setText(Rating);
                     UserAdress.setText(Adress);

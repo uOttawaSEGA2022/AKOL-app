@@ -24,9 +24,6 @@ public class MyOrdersFragment extends Fragment {
     View myFragment;
     ViewPager viewPager;
     TabLayout tabLayout;
-    static String ID;
-    FirebaseFirestore db;
-    static FirebaseAuth Auth;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
