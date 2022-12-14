@@ -1,12 +1,28 @@
 package com.example.akolapp;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +30,14 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Profilefrag extends Fragment {
-
+    static TextView UserName, UserAdress, UserRating,UserEmail;
+    static ImageView UserPic;
+    static Button logoutButton ;
+    static String Rating;
+    static String FName,LName,Name,Adress,Email;
+    static String ID;
+    FirebaseFirestore db;
+    static FirebaseAuth Auth;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,4 +84,62 @@ public class Profilefrag extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profilefrag, container, false);
     }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Auth=FirebaseAuth.getInstance();
+        db= FirebaseFirestore.getInstance();
+        ID = Auth.getUid();
+        UserEmail=getView().findViewById(R.id.userEmail);
+        UserName=getView().findViewById(R.id.username);
+        UserAdress=getView().findViewById(R.id.userAddress);
+        UserRating=getView().findViewById(R.id.userRating);
+        UserPic=getView().findViewById(R.id.userPic);
+        logoutButton =getView().findViewById(R.id.logoutButton);
+
+        if(ID==null){
+            Log.d(TAG, "Error, Please contact the Support");
+        }
+        else{
+            showUserProfile();
+        }
+
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logout();
+            }
+        });}
+    public void showUserProfile(){
+        DocumentReference user = db.collection("cuisinier").document(ID);
+        user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Rating=documentSnapshot.getString("rating");
+                    FName=documentSnapshot.getString("First name");
+                    LName=documentSnapshot.getString("Last name");
+                    Name=FName+LName;
+                    Adress=documentSnapshot.getString("address");
+                    Email=documentSnapshot.getString("Email");
+                    UserEmail.setText(Email);
+                    UserName.setText(Name);
+                    UserRating.setText(Rating);
+                    UserAdress.setText(Adress);
+
+                }
+                else {
+                    Log.d(TAG, "Error, Please contact the Support");
+                }
+            }
+        });
+    }
+    public void Logout(){
+        Auth.signOut();
+        Intent intent = new Intent(this.getActivity(),LoginPage.class);
+        startActivity(intent);
+    }
+
 }

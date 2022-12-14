@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.akolapp.Adapter.SectionPageAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
