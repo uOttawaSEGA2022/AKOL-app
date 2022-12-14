@@ -27,12 +27,11 @@ public class profile extends AppCompatActivity {
     static Button changeImage,logoutButton ;
     static Integer Rating;
     static String FName,LName,Name,Adress,Email;
-    static Image Pic;
     static ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_notifications);
+        setContentView(R.layout.fragment_profilefrag);
 
         Auth=FirebaseAuth.getInstance();
         db= FirebaseFirestore.getInstance();
@@ -42,7 +41,6 @@ public class profile extends AppCompatActivity {
         UserAdress=findViewById(R.id.userAddress);
         UserRating=findViewById(R.id.userRating);
         UserPic=findViewById(R.id.userPic);
-        changeImage=findViewById(R.id.changeImageButton);
         logoutButton =findViewById(R.id.logoutButton);
 
         if(ID==null){
@@ -73,7 +71,7 @@ public class profile extends AppCompatActivity {
             }
         });}
 
-    private void showUserProfile(){
+    public void showUserProfile(){
         DocumentReference user = db.collection("cuisinier").document(ID);
         user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
