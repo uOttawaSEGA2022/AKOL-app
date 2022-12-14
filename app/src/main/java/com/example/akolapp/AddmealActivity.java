@@ -1,6 +1,5 @@
 package com.example.akolapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -114,9 +114,11 @@ public class AddmealActivity extends AppCompatActivity {
                                 user.update(Meals).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(AddmealActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(AddmealActivity.this, CuisinierMenusPage.class);
-                                        startActivity(intent);
+
+
+                                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                        fragmentTransaction.replace(R.id.addMealLayout,new Homefrag()).commit();
+                                        finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
