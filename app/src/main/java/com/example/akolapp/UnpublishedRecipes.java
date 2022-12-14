@@ -2,15 +2,15 @@ package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 import java.util.Map;
 
@@ -67,8 +65,9 @@ public class UnpublishedRecipes extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UnpublishedRecipes.this,CuisinierMenusPage.class);
-                startActivity(intent);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.UnpubLayout,new Homefrag()).commit();
+                finish();
             }
         });
         toMyRecipes.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +117,9 @@ public class UnpublishedRecipes extends AppCompatActivity {
                         }
                     }
                 });
-                Intent intent = new Intent(UnpublishedRecipes.this,CuisinierMenusPage.class);
-                startActivity(intent);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.UnpubLayout,new Homefrag()).commit();
+                finish();
             }
         });
 
