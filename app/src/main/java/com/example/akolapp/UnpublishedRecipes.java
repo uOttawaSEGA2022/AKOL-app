@@ -118,6 +118,7 @@ public class UnpublishedRecipes extends AppCompatActivity {
                     }
                 });
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
                 fragmentTransaction.replace(R.id.UnpubLayout,new Homefrag()).commit();
                 finish();
             }

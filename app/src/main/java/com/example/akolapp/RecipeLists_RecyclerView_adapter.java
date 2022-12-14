@@ -57,4 +57,8 @@ public class RecipeLists_RecyclerView_adapter extends RecyclerView.Adapter<Recip
             });
         }
     }
+    public void updateData(final ArrayList<Recipe> lst ) {
+        Recipes= new ArrayList<>();
+        Recipes.addAll(lst);
+    }
 }

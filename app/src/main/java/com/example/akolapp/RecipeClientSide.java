@@ -38,7 +38,7 @@ public class RecipeClientSide extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth Auth;
     String ID;
-    static String name = "";
+    private String name = "";
 
     //private String currID;
     private FirebaseAuth auth;
@@ -101,11 +101,67 @@ public class RecipeClientSide extends AppCompatActivity {
                             client.put("ChefID",recipe.getId());
                             client.put("isDelivered","no");
                             client.put("ChefName",recipe.getChefName());
-                            name = recipe.getChefName();
-                            Log.d(TAG,"allo hada chefname: " + recipe.getChefName());
+                            //name = recipe.getChefName();
+                            Log.d(TAG,"allo hada chefname: " +name);
                             Map<String, Object> Meals = new HashMap<>();
                             Meals.put("Recipe" + n, client);
                             Meals.put("NumberOfOrders", String.valueOf(n + 1));
+
+                            //starts here
+
+                            String currID = recipe.getId();
+                            Log.d(TAG, "hello " + currID);
+                            db = FirebaseFirestore.getInstance();
+                            DocumentReference docIdRef = db.collection("cuisinier")
+                                    .document(currID);
+                            docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            Map<String,Object> CuisinierInfo = document.getData();
+
+                                            int n = Integer.valueOf((String) CuisinierInfo.get("number of orders"));
+                                            Log.d(TAG,"allo hada chefname2: " +name);
+                                            Map<String, Object> order = new HashMap<>();
+                                            order.put("Client name",name);
+                                            order.put("ClientID",ID);
+                                            order.put("recipe name", recipe.getRecipeName());
+                                            order.put("isDone","no");
+                                            CuisinierInfo.put("Order" + n,order);
+                                            CuisinierInfo.put("number of orders", String.valueOf(n + 1));
+
+
+
+
+
+                                            docIdRef.set(CuisinierInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Log.d(TAG, "Recipe bought");
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.d(TAG, "Recipe couldn't be bought ");
+                                                }
+                                            });
+                                            //ends here
+                                        }
+                                        else {
+                                            Log.d(TAG, "No such document");
+                                        }
+                                    } else {
+                                        Log.d(TAG, "get failed with ", task.getException());
+                                    }
+                                }
+                            });
+
+
+
+
+                            //ends here
 
 
                             user.update(Meals).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -128,54 +184,7 @@ public class RecipeClientSide extends AppCompatActivity {
                     }
                 });
                 //auth = FirebaseAuth.getInstance();
-                String currID = recipe.getId();
-                Log.d(TAG, "hello " + currID);
-                db = FirebaseFirestore.getInstance();
-                DocumentReference docIdRef = db.collection("cuisinier")
-                        .document(currID);
-                docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Map<String,Object> CuisinierInfo = document.getData();
 
-                                int n = Integer.valueOf((String) CuisinierInfo.get("number of orders"));
-
-                                Map<String, Object> order = new HashMap<>();
-                                order.put("Client name",name);
-                                order.put("ClientID",ID);
-                                order.put("recipe name", recipe.getRecipeName());
-                                order.put("isDone","no");
-                                CuisinierInfo.put("Order" + n,order);
-                                CuisinierInfo.put("number of orders", String.valueOf(n + 1));
-
-
-
-
-
-                                docIdRef.set(CuisinierInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Log.d(TAG, "Recipe bought");
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d(TAG, "Recipe couldn't be bought ");
-                                            }
-                                        });
-                                        //ends here
-                                    }
-                            else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
             }
         });
     }

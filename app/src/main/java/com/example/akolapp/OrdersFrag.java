@@ -1,10 +1,14 @@
 package com.example.akolapp;
 
 import static android.content.ContentValues.TAG;
-import static com.example.akolapp.OdersChefAccepVH.siDone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,22 +16,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,26 +31,8 @@ import java.util.Map;
  * Use the {@link OrdersFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrdersFrag extends Fragment {
-    static String ID;
-    FirebaseFirestore db;
-    static FirebaseAuth Auth;
-    static Integer numb;
-    List<String> items;
-    String ClientNa;
-    OdersChefAccepAdapter adapter;
+public class OrdersFrag extends Fragment implements RecyclerInterface {
 
-    public OrdersFrag(String clientNa) {
-        ClientNa = clientNa;
-    }
-    public String getClientNa() {
-
-        return ClientNa;
-    }
-    public void setClientNa(String clientNa) {
-
-        ClientNa = clientNa;
-    }
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,7 +42,12 @@ public class OrdersFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    RecyclerView recyclerViewPublished;
+    OrdersRecyclAdapter myAdapterPublished;
+    FirebaseFirestore db;
+    private String currID;
+    ArrayList<Order> recipes;
+    private FirebaseAuth auth;
     public OrdersFrag() {
         // Required empty public constructor
     }
@@ -104,33 +87,82 @@ public class OrdersFrag extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Auth=FirebaseAuth.getInstance();
-        db= FirebaseFirestore.getInstance();
-        ID = Auth.getUid();
-        items=new ArrayList<>();
+        auth = FirebaseAuth.getInstance();
+        recyclerViewPublished = getView().findViewById(R.id.Recyclercuis);
+        recyclerViewPublished.setHasFixedSize(true);
+        recyclerViewPublished.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        if(ID==null){
-            Toast.makeText(this.getActivity(), "Error, Please contact the Support", Toast.LENGTH_LONG).show();
-        }
-        else{
-            info();
-        }
-        RecyclerView recyclerView=getView().findViewById(R.id.Recyclercuis);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        adapter = new OdersChefAccepAdapter(this.getActivity(),items);
-        adapter.notifyDataSetChanged();
+        db = FirebaseFirestore.getInstance();
+        recipes = new ArrayList<>();
+        myAdapterPublished = new OrdersRecyclAdapter(this.getActivity(),recipes,this);
+        recyclerViewPublished.setAdapter(myAdapterPublished);
+        myAdapterPublished.notifyDataSetChanged();
+        EventChangeListener();
     }
-    public void info(){
-        DocumentReference user = db.collection("cuisinier").document(ID);
-        user.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+
+    private void EventChangeListener() {
+        currID = auth.getUid();
+        DocumentReference docIdRef = db.collection("cuisinier").document(currID);
+        docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Map<String,Object> ClientInfo = document.getData();
+                        for (Map.Entry<String,Object> mapElement : ClientInfo.entrySet()) {
+                            String key = mapElement.getKey();
+                            if (key.startsWith("Order")) {
+                                Map<String,String> orderN = (Map<String,String>)mapElement.getValue();
+                                Log.d(TAG,"allo hada id: " + currID);
+                                Order order = new Order(orderN.get("Client name"),orderN.get("ClientID"),orderN.get("recipe name"));
+                                        //recipes.add(new Recipe((String) curRecipe.get("Name"), (String) curRecipe.get("Allergens"), (String) curRecipe.get("Cuisine type"), (String) curRecipe.get("Description"), (String) curRecipe.get("Ingredients"), (String) curRecipe.get("Meal type"), (String) curRecipe.get("Prix"), (String) curRecipe.get("id"),(String) elementsDoc.get("First name")+" "+elementsDoc.get("Last name")));
+
+                                if(orderN.get("isDone").equals("no")) {
+                                    recipes.add(order);
+                                }
+
+                            }
+                        }
+                        myAdapterPublished.notifyDataSetChanged();
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public void clicked(int pos) {
+        Intent intent = new Intent(getActivity(),OrdersClientSide.class);//publishedRecipe is hiba's page name
+        intent.putExtra("Order", (Parcelable) recipes.get(pos));//we pass to the published recipe's page a recipe which will be shown afterwards
+        myAdapterPublished.notifyDataSetChanged();
+        startActivity(intent);
+
+    }
+
+
+
+
+    /*public void info(){
+        DocumentReference user = db.collection("cuisinier").document(ID);
+        user.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
                     int a=1;
-                    numb=Integer.valueOf((String) documentSnapshot.get("number of orders"));
-                    Map<String,Object> CuisinierInfo = documentSnapshot.getData();
+                    //Log.d(TAG,(String) document.getData().get("number of orders"));
+                    numb=Integer.valueOf((String) document.getData().get("number of orders"));
+                    Map<String,Object> CuisinierInfo = document.getData();
+
                     for (Map.Entry<String,Object> mapElement : CuisinierInfo.entrySet()) {
                         String key = mapElement.getKey();
                         if(a<=numb){
@@ -199,5 +231,5 @@ public class OrdersFrag extends Fragment {
                 }
             }
         });
-    }
+    }*/
 }
