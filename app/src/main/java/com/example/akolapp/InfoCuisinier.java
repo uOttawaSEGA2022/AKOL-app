@@ -155,8 +155,8 @@ public class InfoCuisinier extends AppCompatActivity {
         cuisinier.put("number of orders",String.valueOf(0));
         cuisinier.put("Ban","Not Banned");
         cuisinier.put("Ban period","Not specified");
-        cuisinier.put("rating",0);
-        cuisinier.put("nbrrating",0);
+        cuisinier.put("rating","0");
+        cuisinier.put("nbrrating","0");
 
         DocumentReference currUser = db.collection("cuisinier").document(currID);
 

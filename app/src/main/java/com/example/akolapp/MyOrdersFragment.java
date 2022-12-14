@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.akolapp.Adapter.SectionPageAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +24,9 @@ public class MyOrdersFragment extends Fragment {
     View myFragment;
     ViewPager viewPager;
     TabLayout tabLayout;
+    static String ID;
+    FirebaseFirestore db;
+    static FirebaseAuth Auth;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
